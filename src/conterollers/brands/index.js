@@ -83,8 +83,40 @@ const showBrand = async (req, res, next) => {
   };
 };
 
+/**
+ * Brandni tahrirlash
+ * @param {express.Request} req 
+ * @param {express.Response} res 
+ * @param {express.NextFunction} next 
+ */
+const editBrand = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+
+    const { name } = req.body;
+
+    const existing = await db('brands').where({ id }).first();
+
+    if (!existing) {
+      throw new NotFoundError(`IDsi ${id} bo'lgan brand topilmadi`);
+    };
+
+    const updated = await db('brands')
+      .where({ id })
+      .update({ name })
+      .returning('*');
+
+    res.status(200).json({
+      updated: updated[0]
+    });
+  } catch (error) {
+    next(error);
+  };
+};
+
 module.exports = {
   addBrand,
   getBrands,
-  showBrand
+  showBrand,
+  editBrand
 };
