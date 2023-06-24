@@ -111,8 +111,19 @@ const showModel = async (req, res, next) => {
   };
 };
 
+/**
+ * Modelni tahrirlash
+ * @param {express.Request} req 
+ * @param {express.Response} res 
+ * @param {express.NextFunction} next 
+ */
+const editModel = async (req, res, next) => {
+
+}
+
 module.exports = {
   addModel,
   getModels,
-  showModel
+  showModel,
+  editModel
 };
