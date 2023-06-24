@@ -114,9 +114,39 @@ const editBrand = async (req, res, next) => {
   };
 };
 
+/**
+ * Brandni o'chirish
+ * @param {express.Request} req 
+ * @param {express.Response} res 
+ * @param {express.NextFunction} next 
+ */
+const deleteBrand = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+
+    const existing = await db('brands').where({id}).first();
+
+    if(!existing) {
+      throw new NotFoundError(`IDsi ${id} bo'lgan brand topilmadi`);
+    };
+
+    const deleted = await db('brands')
+      .where({id})
+      .delete()
+      .returning('*');
+
+    res.status(200).json({
+      deleted
+    });
+  } catch (error) {
+    next(error);
+  };
+};
+
 module.exports = {
   addBrand,
   getBrands,
   showBrand,
-  editBrand
+  editBrand,
+  deleteBrand
 };
