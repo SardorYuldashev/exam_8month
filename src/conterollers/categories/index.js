@@ -10,7 +10,7 @@ const addCategory = async (req, res, next) => {
   try {
     const { name } = req.body;
 
-    
+    res.sendStatus(200);
   } catch (error) {
     next(error);
   };

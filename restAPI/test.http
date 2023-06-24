@@ -11,13 +11,12 @@ Content-Type: application/json
 
 ###
 GET http://localhost:3000/users
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjg3NjA3MTYxLCJleHAiOjE2ODc3Nzk5NjF9.2_B2MCkglZXzBwn06f8xLC_K4kNc8uR27k1ut-I1Gww
-
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjg3NjEwMzk3LCJleHAiOjE2ODc3ODMxOTd9.ttbFW0MpIc-Q_x5iAmwvDLiNHSDcmjiCKPvLT5sGNMY
 
 
 ###
 GET http://localhost:3000/users/2
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjg3NjA3MTYxLCJleHAiOjE2ODc3Nzk5NjF9.2_B2MCkglZXzBwn06f8xLC_K4kNc8uR27k1ut-I1Gww
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjg3NjEwMzk3LCJleHAiOjE2ODc3ODMxOTd9.ttbFW0MpIc-Q_x5iAmwvDLiNHSDcmjiCKPvLT5sGNMY
 
 
 
@@ -25,7 +24,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6ImFkbWlu
 
 ###
 PATCH http://localhost:3000/users/1
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjg3NjA3MTYxLCJleHAiOjE2ODc3Nzk5NjF9.2_B2MCkglZXzBwn06f8xLC_K4kNc8uR27k1ut-I1Gww
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjg3NjEwMzk3LCJleHAiOjE2ODc3ODMxOTd9.ttbFW0MpIc-Q_x5iAmwvDLiNHSDcmjiCKPvLT5sGNMY
 Content-Type: application/json
 
 {
