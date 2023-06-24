@@ -15,4 +15,7 @@ const db = knex({
   }
 });
 
+/**
+ * @type {knex.Knex}
+ */
 module.exports = db;

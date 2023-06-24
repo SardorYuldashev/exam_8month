@@ -1,4 +1,4 @@
-const errorMiddlewareFunc = (err, req, res, next) => {
+const errorHandler = (err, req, res, next) => {
   let status = 500;
 
   if(err instanceof NotFoundError) {
@@ -57,7 +57,7 @@ class NotFoundError extends Error {
 };
 
 module.exports = {
-  errorMiddlewareFunc,
+  errorHandler,
   UnauthorizedError,
   ForbiddenError,
   BadReqqustError,
