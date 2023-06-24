@@ -1,6 +1,6 @@
 const express = require('express');
 const db = require('../../db');
-const { UnauthorizedError } = require('../../shared/errors');
+const { UnauthorizedError, NotFoundError } = require('../../shared/errors');
 const bcryp = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const config = require('../../shared/config');
@@ -79,7 +79,33 @@ const getUsers = async (req, res, next) => {
   };
 };
 
+/**
+ * Bitta user ma'lumotini olish
+ * @param {express.Request} req 
+ * @param {express.Response} res 
+ * @param {express.NextFunction} next 
+ */
+const showUser = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+
+    const user = await db('users')
+      .select('id', 'first_name', 'last_name', 'role', 'username')
+      .where({ id })
+      .first();
+
+    if (!user) {
+      throw new NotFoundError(`IDsi ${id} bo'lgan user topilmadi`);
+    };
+
+    res.status(200).json({ user });
+  } catch (error) {
+    next(error);
+  };
+};
+
 module.exports = {
   loginUser,
-  getUsers
+  getUsers,
+  showUser
 };
