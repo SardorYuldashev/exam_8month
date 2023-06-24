@@ -1,6 +1,6 @@
 const express = require('express');
 const db = require('../../db');
-const { UnauthorizedError, NotFoundError } = require('../../shared/errors');
+const { UnauthorizedError, NotFoundError, BadReqqustError } = require('../../shared/errors');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const config = require('../../shared/config');
@@ -113,6 +113,10 @@ const showUser = async (req, res, next) => {
 const editUser = async (req, res, next) => {
   try {
     const { ...values } = req.body;
+
+    if(values.role) {
+      throw new BadReqqustError('Role ni o\'zgartirish mumkin emas');
+    };
 
     if (values.password) {
       values.password = await bcrypt.hash(values.password, 10);
