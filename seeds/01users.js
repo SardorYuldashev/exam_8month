@@ -5,7 +5,6 @@ const bcrypt = require('bcrypt');
  * @returns { Promise<void> } 
  */
 exports.seed = async function(knex) {
-  // Deletes ALL existing entries
   await knex('users').del()
   await knex('users').insert([
     {
@@ -13,6 +12,13 @@ exports.seed = async function(knex) {
       last_name: "Yuldashev",
       role: "admin",
       username: "sardorbek",
+      password: await bcrypt.hash('12345678', 10)
+    },
+    {
+      first_name: "Orzu",    
+      last_name: "Mirzayev",
+      role: "admin",
+      username: "orzu",
       password: await bcrypt.hash('12345678', 10)
     }
   ]);
