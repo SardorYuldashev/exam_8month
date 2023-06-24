@@ -118,8 +118,29 @@ const showModel = async (req, res, next) => {
  * @param {express.NextFunction} next 
  */
 const editModel = async (req, res, next) => {
+  try {
+    const { id } = req.params;
 
-}
+    const { ...values } = req.body;
+
+    const existing = await db('models').where({ id }).first();
+
+    if (!existing) {
+      throw new NotFoundError(`IDsi ${id} bo'lgan model topilmadi`);
+    };
+
+    const updated = await db('models')
+      .where({ id })
+      .update({ ...values })
+      .returning('*');
+
+    res.status(200).json({
+      updated: updated[0]
+    });
+  } catch (error) {
+    next(error);
+  };
+};
 
 module.exports = {
   addModel,

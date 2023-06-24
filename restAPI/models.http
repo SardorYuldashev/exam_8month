@@ -14,4 +14,15 @@ GET http://localhost:3000/models
 
 
 ###
-GET http://localhost:3000/models/5
+GET http://localhost:3000/models/1
+
+
+###
+PATCH http://localhost:3000/models/1
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjg3NjA3MTYxLCJleHAiOjE2ODc3Nzk5NjF9.2_B2MCkglZXzBwn06f8xLC_K4kNc8uR27k1ut-I1Gww
+Content-Type: application/json
+
+{
+  "name": "Legion",
+  "brand_id": 6
+}
