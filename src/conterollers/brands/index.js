@@ -1,0 +1,90 @@
+const express = require('express');
+const db = require('../../db');
+const { NotFoundError } = require('../../shared/errors');
+
+/**
+ * Brand yaratish
+ * @param {express.Request} req 
+ * @param {express.Response} res 
+ * @param {express.NextFunction} next 
+ */
+const addBrand = async (req, res, next) => {
+  try {
+    const { name } = req.body;
+
+    const result = await db('brands').insert({ name }).returning('*');
+
+    res.status(200).json({
+      brand: result[0]
+    });
+  } catch (error) {
+    next(error);
+  };
+};
+
+/**
+ * Brandlar listini olish
+ * @param {express.Request} req 
+ * @param {express.Response} res 
+ * @param {express.NextFunction} next 
+ */
+const getBrands = async (req, res, next) => {
+  try {
+    const { q, offset = 0, limit = 10, sort_by = 'id', sort_order = 'desc' } = req.query;
+
+    const dbQuery = db('brands').select('*');
+
+    if (q) {
+      dbQuery.andWhereILike('name', `%${q}%`);
+    };
+
+    const total = await dbQuery.clone().count().groupBy('id');
+
+    dbQuery.orderBy(sort_by, sort_order);
+
+    dbQuery.limit(limit).offset(offset);
+
+    const brands = await dbQuery;
+
+    res.status(200).json({
+      brands,
+      pageInfo: {
+        total: total.length,
+        offset,
+        limit,
+      }
+    });
+  } catch (error) {
+    next(error);
+  };
+};
+
+/**
+ * Bitta brandni olish
+ * @param {express.Request} req 
+ * @param {express.Response} res 
+ * @param {express.NextFunction} next 
+ */
+const showBrand = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+
+    const brand = await db('brands').select('*').where({ id }).first();
+
+    if (!brand) {
+      throw new NotFoundError(`IDsi ${id} bo'lgan brand topilmadi`);
+    };
+
+    res.status(200).json({
+      brand
+    });
+  } catch (error) {
+    next(error);
+  };
+};
+
+module.exports = {
+  addBrand,
+  getBrands,
+  showBrand
+};
