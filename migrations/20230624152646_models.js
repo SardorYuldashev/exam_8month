@@ -6,7 +6,7 @@ exports.up = function(knex) {
   return knex.schema.createTable('models', (table) => {
     table.increments('id').primary();
     table.string('name', 100).notNullable().unique();
-    table.integer('model_id').references(id).inTable('models').onDelete('SET NULL');
+    table.integer('model_id').references('id').inTable('models').onDelete('SET NULL');
   });
 };
 
