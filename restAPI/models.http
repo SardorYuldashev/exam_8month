@@ -27,7 +27,7 @@ Content-Type: application/json
   "brand_id": 6
 }
 
-
+da6c169066b400b98f274978e54a2a11e3f6e5fe
 
 ###
 DELETE http://localhost:3000/models/10
