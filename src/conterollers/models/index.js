@@ -1,5 +1,6 @@
 const express = require('express');
 const db = require('../../db');
+const { NotFoundError } = require('../../shared/errors');
 
 /**
  * Model qo'shish
@@ -42,7 +43,7 @@ const getModels = async (req, res, next) => {
             'id', brands.id,
             'name', brands.name
           ) END as brand
-        `)      
+        `)
       )
       .groupBy('models.id', 'brands.id');
 
@@ -71,7 +72,47 @@ const getModels = async (req, res, next) => {
   };
 };
 
+/**
+ * Bitta modelni olish
+ * @param {express.Request} req 
+ * @param {express.Response} res 
+ * @param {express.NextFunction} next 
+ */
+const showModel = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+
+    const model = await db('models')
+      .leftJoin('brands', 'brands.id', 'models.brand_id')
+      .select(
+        'models.id',
+        'models.name',
+        db.raw(`
+        CASE WHEN models.brand_id IS NULL THEN NULL
+        ELSE json_build_object(
+          'id', brands.id,
+          'name', brands.name
+        ) END as brand
+      `)
+      )
+      .where({ 'models.id': id })
+      .groupBy('models.id', 'brands.id')
+      .first();
+
+    if (!model) {
+      throw new NotFoundError(`IDsi ${id} bo'lgan model topilmadi`);
+    };
+
+    res.status(200).json({
+      model
+    });
+  } catch (error) {
+    next(error);
+  };
+};
+
 module.exports = {
   addModel,
-  getModels
+  getModels,
+  showModel
 };
