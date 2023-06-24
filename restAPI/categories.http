@@ -17,3 +17,14 @@ GET http://localhost:3000/categories
 
 ###
 GET http://localhost:3000/categories/6
+
+
+
+###
+PATCH http://localhost:3000/categories/6
+Content-Type: application/json
+# Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjg3NjA3MTYxLCJleHAiOjE2ODc3Nzk5NjF9.2_B2MCkglZXzBwn06f8xLC_K4kNc8uR27k1ut-I1Gww
+
+{
+  "name": "O'yin uchun noutbuklar"
+}
