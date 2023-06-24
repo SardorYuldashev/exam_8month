@@ -5,3 +5,10 @@ Content-Type: application/json
   "username": "sardorbek",
   "password": "12345678"
 }
+
+
+
+
+###
+GET http://localhost:3000/users?q=yul
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjg3NjAyMjUzLCJleHAiOjE2ODc3NzUwNTN9.jkrfkKZZNRyVIer_LYNOrRzFCwjV40GIPolHP8pXWys

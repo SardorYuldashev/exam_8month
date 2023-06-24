@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken');
 const config = require('../../shared/config');
 
 /**
- * 
+ * Login qilish
  * @param {express.Request} req 
  * @param {express.Response} res 
  * @param {express.NextFunction} next 
@@ -42,6 +42,44 @@ const loginUser = async (req, res, next) => {
   };
 };
 
+/**
+ * Userlar listini olish
+ * @param {express.Request} req 
+ * @param {express.Response} res 
+ * @param {express.NextFunction} next 
+ */
+const getUsers = async (req, res, next) => {
+  try {
+    const { q, offset = 0, limit = 10, sort_by = 'id', sort_order = 'desc' } = req.query;
+
+    const dbQuery = db('users').select('id', 'first_name', 'last_name', 'role', 'username');
+
+    if (q) {
+      dbQuery.andWhereILike('first_name', `%${q}%`).orWhereILike('last_name', `%${q}%`);
+    };
+
+    const total = await dbQuery.clone().count().groupBy('id');
+
+    dbQuery.orderBy(sort_by, sort_order);
+
+    dbQuery.limit(limit).offset(offset);
+
+    const users = await dbQuery;
+
+    res.status(200).json({
+      users,
+      pageInfo: {
+        total: total.length,
+        offset,
+        limit,
+      }
+    });
+  } catch (error) {
+    next(error);
+  };
+};
+
 module.exports = {
-  loginUser
+  loginUser,
+  getUsers
 };
