@@ -142,9 +142,39 @@ const editModel = async (req, res, next) => {
   };
 };
 
+/**
+ * Modelni o'chirish
+ * @param {express.Request} req 
+ * @param {express.Response} res 
+ * @param {express.NextFunction} next 
+ */
+const deleteModel = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+
+    const existing = await db('models').where({ id }).first();
+
+    if (!existing) {
+      throw new NotFoundError(`IDsi ${id} bo'lgan model topilmadi`);
+    };
+
+    const deleted = await db('models')
+      .where({id})
+      .delete()
+      .returning('*');
+
+    res.status(200).json({
+      deleted: deleted[0]
+    });
+  } catch (error) {
+    next(error);
+  };
+};
+
 module.exports = {
   addModel,
   getModels,
   showModel,
-  editModel
+  editModel,
+  deleteModel
 };
