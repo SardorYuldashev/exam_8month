@@ -14,7 +14,7 @@ const addBrand = async (req, res, next) => {
 
     const result = await db('brands').insert({ name }).returning('*');
 
-    res.status(200).json({
+    res.status(201).json({
       brand: result[0]
     });
   } catch (error) {

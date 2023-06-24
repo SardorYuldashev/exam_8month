@@ -15,7 +15,7 @@ const addCategory = async (req, res, next) => {
 
     const result = await db('categories').insert({ name }).returning('*');
 
-    res.status(200).json({
+    res.status(201).json({
       category: result[0]
     });
   } catch (error) {
