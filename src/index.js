@@ -1,9 +1,11 @@
 const express = require('express');
+const config = require('./shared/config');
 
 const app = express();
 
 app.use(express.json());
 
-app.listen(3000, () => {
-  console.log(`http://localhost:3000`);
+const PORT = config.port || 3000;
+app.listen(PORT, () => {
+  console.log(`http://localhost:${PORT}`);
 });
