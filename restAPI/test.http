@@ -19,3 +19,11 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6ImFkbWlu
 ###
 GET http://localhost:3000/users/3
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjg3NjAyMjUzLCJleHAiOjE2ODc3NzUwNTN9.jkrfkKZZNRyVIer_LYNOrRzFCwjV40GIPolHP8pXWys
+
+
+
+
+
+###
+PATCH http://localhost:3000/users/1
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjg3NjAyMjUzLCJleHAiOjE2ODc3NzUwNTN9.jkrfkKZZNRyVIer_LYNOrRzFCwjV40GIPolHP8pXWys

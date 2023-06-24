@@ -104,8 +104,23 @@ const showUser = async (req, res, next) => {
   };
 };
 
+/**
+ * User ma'lumotini tahrirlash
+ * @param {express.Request} req 
+ * @param {express.Response} res 
+ * @param {express.NextFunction} next 
+ */
+const editUser = async (req, res, next) => {
+  try {
+    res.status(200).json({msg: 'ok'});
+  } catch (error) {
+    next(error);
+  };
+};
+
 module.exports = {
   loginUser,
   getUsers,
-  showUser
+  showUser,
+  editUser
 };
