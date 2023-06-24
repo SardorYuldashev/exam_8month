@@ -1,6 +1,6 @@
 const express = require('express');
 const db = require('../../db');
-const { BadReqqustError } = require('../../shared/errors');
+const { BadReqqustError, NotFoundError } = require('../../shared/errors');
 
 /**
  * Kategoriya yaratish
@@ -12,8 +12,8 @@ const addCategory = async (req, res, next) => {
   try {
     const { name } = req.body;
 
-    const result = await db('categories').insert({name}).returning('*');
-    
+    const result = await db('categories').insert({ name }).returning('*');
+
     res.status(200).json({
       category: result[0]
     });
@@ -56,7 +56,7 @@ const getCategories = async (req, res, next) => {
     });
   } catch (error) {
     next(error);
-  };  
+  };
 };
 
 /**
@@ -66,8 +66,22 @@ const getCategories = async (req, res, next) => {
  * @param {express.NextFunction} next 
  */
 const showCategory = async (req, res, next) => {
+  try {
+    const { id } = req.params;
 
-}
+    const category = await db('categories').select('*').where({ id }).first();
+
+    if (!category) {
+      throw new NotFoundError(`IDsi ${id} bo'lgan kategoriya topilmadi`);
+    };
+
+    res.status(200).json({
+      category
+    });
+  } catch (error) {
+    next(error);
+  };
+};
 
 module.exports = {
   addCategory,
