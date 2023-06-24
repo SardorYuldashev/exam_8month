@@ -10,15 +10,14 @@ Content-Type: application/json
 
 
 ###
-GET http://localhost:3000/users?q=yul
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjg3NjAyMjUzLCJleHAiOjE2ODc3NzUwNTN9.jkrfkKZZNRyVIer_LYNOrRzFCwjV40GIPolHP8pXWys
-
+GET http://localhost:3000/users
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjg3NjA3MTYxLCJleHAiOjE2ODc3Nzk5NjF9.2_B2MCkglZXzBwn06f8xLC_K4kNc8uR27k1ut-I1Gww
 
 
 
 ###
-GET http://localhost:3000/users/3
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjg3NjAyMjUzLCJleHAiOjE2ODc3NzUwNTN9.jkrfkKZZNRyVIer_LYNOrRzFCwjV40GIPolHP8pXWys
+GET http://localhost:3000/users/2
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjg3NjA3MTYxLCJleHAiOjE2ODc3Nzk5NjF9.2_B2MCkglZXzBwn06f8xLC_K4kNc8uR27k1ut-I1Gww
 
 
 
@@ -26,4 +25,12 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6ImFkbWlu
 
 ###
 PATCH http://localhost:3000/users/1
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjg3NjAyMjUzLCJleHAiOjE2ODc3NzUwNTN9.jkrfkKZZNRyVIer_LYNOrRzFCwjV40GIPolHP8pXWys
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjg3NjA3MTYxLCJleHAiOjE2ODc3Nzk5NjF9.2_B2MCkglZXzBwn06f8xLC_K4kNc8uR27k1ut-I1Gww
+Content-Type: application/json
+
+{
+  "first_name": "Sardor",
+  "last_name": "Yuldashev",
+  "username": "sardorbek",
+  "password": "12345678"
+}

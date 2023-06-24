@@ -1,7 +1,7 @@
 const express = require('express');
 const db = require('../../db');
 const { UnauthorizedError, NotFoundError } = require('../../shared/errors');
-const bcryp = require('bcrypt');
+const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const config = require('../../shared/config');
 
@@ -21,7 +21,7 @@ const loginUser = async (req, res, next) => {
       throw new UnauthorizedError('Username yoki password xato kiritilgan');
     };
 
-    const passwordCompare = await bcryp.compare(password, existing.password);
+    const passwordCompare = await bcrypt.compare(password, existing.password);
 
     if (!passwordCompare) {
       throw new UnauthorizedError('Username yoki password xato kiritilgan');
@@ -112,7 +112,22 @@ const showUser = async (req, res, next) => {
  */
 const editUser = async (req, res, next) => {
   try {
-    res.status(200).json({msg: 'ok'});
+    const { ...values } = req.body;
+
+    if (values.password) {
+      values.password = await bcrypt.hash(values.password, 10);
+    };
+
+    const { id } = req.params;
+    
+    const updated = await db('users')
+      .where({id})
+      .update({...values})
+      .returning(['id', 'first_name', 'last_name', 'username']);
+
+    res.status(200).json({
+      updated: updated[0]
+    });
   } catch (error) {
     next(error);
   };
