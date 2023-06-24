@@ -98,13 +98,13 @@ const editCategory = async (req, res, next) => {
 
     const existing = await db('categories').where({ id }).first();
 
-    if(!existing) {
+    if (!existing) {
       throw new NotFoundError(`IDsi ${id} bo'lgan kategoriya topilmadi`);
     };
 
     const updated = await db('categories')
-      .where({id})
-      .update({name})
+      .where({ id })
+      .update({ name })
       .returning('*');
 
     res.status(200).json({
@@ -115,9 +115,39 @@ const editCategory = async (req, res, next) => {
   };
 };
 
+/**
+ * Kategoriyani o'chirish
+ * @param {express.Request} req 
+ * @param {express.Response} res 
+ * @param {express.NextFunction} next 
+ */
+const deleteCategory = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+
+    const existing = await db('categories').where({id}).first();
+
+    if(!existing) {
+      throw new NotFoundError(`IDsi ${id} bo'lgan kategoriya topilmadi`);
+    };
+
+    const deleted = await db('categories')
+      .where({id})
+      .delete()
+      .returning('*');
+
+    res.status(200).json({
+      deleted
+    })
+  } catch (error) {
+    next(error);
+  };
+};
+
 module.exports = {
   addCategory,
   getCategories,
   showCategory,
-  editCategory
+  editCategory,
+  deleteCategory
 };
