@@ -174,10 +174,41 @@ const editNoutbook = async (req, res, next) => {
   };
 };
 
+/**
+ * Noutbookni o'chirish
+ * @param {express.Request} req 
+ * @param {express.Response} res 
+ * @param {express.NextFunction} next 
+ */
+const deleteNoutbook = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+
+    const existing = await db('noutbooks').where({ id }).first();
+
+    if (!existing) {
+      throw new NotFoundError(`IDsi ${id} bo'lgan noutbook topilmadi`);
+    };
+
+    removeFile(existing.image);
+
+    const deleted = await db('noutbooks')
+      .where({id})
+      .delete()
+      .returning('*');
+
+    res.status(200).json({
+      deleted: deleted[0]
+    });
+  } catch (error) {
+    next(error);
+  };
+};
 
 module.exports = {
   addNoutbook,
   getNoutbooks,
   showNoutbook,
-  editNoutbook
+  editNoutbook,
+  deleteNoutbook
 };

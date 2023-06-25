@@ -5,3 +5,9 @@ GET http://localhost:3000/noutbooks?limit=2
 
 ###
 GET http://localhost:3000/noutbooks/1
+
+
+
+###
+DELETE http://localhost:3000/noutbooks/10
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjg3Njc5MjczLCJleHAiOjE2ODc4NTIwNzN9.IIcWRbKrz6x3a_ZoFpssG5swZfMXm7dE2Rt3D5pp3Kc
