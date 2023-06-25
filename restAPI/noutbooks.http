@@ -2,17 +2,16 @@
 GET http://localhost:3000/noutbooks
 
 ### Bitta noutbukni olish
-GET http://localhost:3000/noutbooks/13
+GET http://localhost:3000/noutbooks/:id
 
 ### Noutbukni o'chirish
-DELETE http://localhost:3000/noutbooks/11
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjg3Njc5MjczLCJleHAiOjE2ODc4NTIwNzN9.IIcWRbKrz6x3a_ZoFpssG5swZfMXm7dE2Rt3D5pp3Kc
+DELETE http://localhost:3000/noutbooks/:id
+Authorization: 
 
 ### Noutbukni kategoriyaga bog'lash
 POST http://localhost:3000/noutbooks/:id/categories/:category_id
 Authorization: 
 
-
-###
+### Noutbukni o'chirish
 DELETE http://localhost:3000/noutbooks/:id/categories/:category_id
 Authorization: 
