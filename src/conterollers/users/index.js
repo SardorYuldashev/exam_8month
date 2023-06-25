@@ -50,7 +50,7 @@ const loginUser = async (req, res, next) => {
  */
 const getUsers = async (req, res, next) => {
   try {
-    const { q, offset = 0, limit = 10, sort_by = 'id', sort_order = 'desc' } = req.query;
+    const { q, offset = 0, limit = 5, sort_by = 'id', sort_order = 'desc' } = req.query;
 
     const dbQuery = db('users').select('id', 'first_name', 'last_name', 'role', 'username');
 

@@ -31,7 +31,7 @@ const addCategory = async (req, res, next) => {
  */
 const getCategories = async (req, res, next) => {
   try {
-    const { q, offset = 0, limit = 10, sort_by = 'id', sort_order = 'desc' } = req.query;
+    const { q, offset = 0, limit = 5, sort_by = 'id', sort_order = 'desc' } = req.query;
 
     const dbQuery = db('categories')
       .leftJoin('noutbooks_categories', 'noutbooks_categories.category_id', 'categories.id')

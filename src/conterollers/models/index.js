@@ -30,7 +30,7 @@ const addModel = async (req, res, next) => {
  */
 const getModels = async (req, res, next) => {
   try {
-    const { q, offset = 0, limit = 10, sort_by = 'id', sort_order = 'desc' } = req.query;
+    const { q, offset = 0, limit = 5, sort_by = 'id', sort_order = 'desc' } = req.query;
 
     const dbQuery = db('models')
       .leftJoin('brands', 'brands.id', 'models.brand_id')
