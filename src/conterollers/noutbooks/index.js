@@ -1,6 +1,6 @@
 const express = require('express');
 const db = require('../../db');
-const { NotFoundError } = require('../../shared/errors');
+const { NotFoundError, BadReqqustError } = require('../../shared/errors');
 const removeFile = require('../../shared/removeFile')
 
 /**
@@ -211,7 +211,7 @@ const deleteNoutbook = async (req, res, next) => {
  * @param {express.Response} res 
  * @param {express.NextFunction} next 
  */
-const linkNoutbookCategory = async (req, res, next) => {
+const addNoutbookToCategory = async (req, res, next) => {
   try {
     const { noutbook_id, category_id } = req.params;
 
@@ -225,11 +225,43 @@ const linkNoutbookCategory = async (req, res, next) => {
   };
 };
 
+/**
+ * Noutbookni kategoriyadan o'chirish
+ * @param {express.Request} req 
+ * @param {express.Response} res 
+ * @param {express.NextFunction} next 
+ */
+const removeNoutbookFromCategory = async (req, res, next) => {
+  try {
+    const { noutbook_id, category_id } = req.params;
+
+    const existing = await db('noutbooks_categories')
+      .where({ noutbook_id, category_id })
+      .first();
+
+    if (!existing) {
+      throw new BadReqqustError(`Xato IDlar kiritilgan`);
+    };
+
+    const deleted = await db('noutbooks_categories')
+      .where({ noutbook_id, category_id })
+      .delete()
+      .returning(['id', 'noutbook_id', 'category_id']);
+
+    res.status(200).json({
+      deleted: deleted[0]
+    });
+  } catch (error) {
+    next(error);
+  };
+};
+
 module.exports = {
   addNoutbook,
   getNoutbooks,
   showNoutbook,
   editNoutbook,
   deleteNoutbook,
-  linkNoutbookCategory
+  addNoutbookToCategory,
+  removeNoutbookFromCategory
 };
