@@ -193,7 +193,7 @@ const deleteNoutbook = async (req, res, next) => {
     removeFile(existing.image);
 
     const deleted = await db('noutbooks')
-      .where({id})
+      .where({ id })
       .delete()
       .returning('*');
 
@@ -205,10 +205,31 @@ const deleteNoutbook = async (req, res, next) => {
   };
 };
 
+/**
+ * Noutbookni kategoriyaga ulash
+ * @param {express.Request} req 
+ * @param {express.Response} res 
+ * @param {express.NextFunction} next 
+ */
+const linkNoutbookCategory = async (req, res, next) => {
+  try {
+    const { noutbook_id, category_id } = req.params;
+
+    const result = await db('noutbooks_categories').insert({ noutbook_id, category_id }).returning('*');
+
+    res.status(201).json({
+      result
+    });
+  } catch (error) {
+    next(error);
+  };
+};
+
 module.exports = {
   addNoutbook,
   getNoutbooks,
   showNoutbook,
   editNoutbook,
-  deleteNoutbook
+  deleteNoutbook,
+  linkNoutbookCategory
 };

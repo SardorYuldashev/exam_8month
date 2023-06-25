@@ -7,6 +7,7 @@ exports.up = function (knex) {
     table.increments('id').primary();
     table.integer('noutbook_id').references('id').inTable('noutbooks');
     table.integer('category_id').references('id').inTable('categories');
+    table.unique(['noutbook_id', 'category_id']);
   });
 };
 
