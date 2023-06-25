@@ -1,18 +1,7 @@
-const Joi = require('joi');
-const { BadReqqustError } = require('../errors');
+const genValidator = require('./genValidator');
+const uploadValidator = require('./uploadValidator');
 
-/**
- * @param {Joi.Schema} schema 
- */
-module.exports =  function genValidator(schema) {
-  return async (req, res, next) => {
-    try {
-      await schema.validateAsync(req.body);
-
-      next();
-    } catch (error) {
-      err = new BadReqqustError(error.details[0].message);
-      next(err);
-    };
-  };
+module.exports = {
+  genValidator,
+  uploadValidator
 };

@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const genValidator = require('../shared/validator');
+const { genValidator } = require('../shared/validator');
 const { isLoggedIn } = require('../shared/auth');
 const schemas = require('../conterollers/brands/schemas');
 const { addBrand, getBrands, showBrand, editBrand, deleteBrand } = require('../conterollers/brands');

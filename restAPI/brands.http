@@ -1,9 +1,9 @@
 POST http://localhost:3000/brands
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjg3NjA3MTYxLCJleHAiOjE2ODc3Nzk5NjF9.2_B2MCkglZXzBwn06f8xLC_K4kNc8uR27k1ut-I1Gww
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjg3NjgyNzQzLCJleHAiOjE2ODc4NTU1NDN9.S7qMn3pJWwp8qjMg68CM_lfkWQ964NQdeFpvf6Ni7vk
 Content-Type: application/json
 
 {
-  "name": "Asus"
+  "name": "Maxsus"
 }
 
 
@@ -13,17 +13,17 @@ GET http://localhost:3000/brands
 
 
 ###
-GET http://localhost:3000/brands/4
+GET http://localhost:3000/brands/7
 
 
 
 ###
-PATCH http://localhost:3000/brands/3
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjg3NjA3MTYxLCJleHAiOjE2ODc3Nzk5NjF9.2_B2MCkglZXzBwn06f8xLC_K4kNc8uR27k1ut-I1Gww
+PATCH http://localhost:3000/brands/7
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjg3NjgyNzQzLCJleHAiOjE2ODc4NTU1NDN9.S7qMn3pJWwp8qjMg68CM_lfkWQ964NQdeFpvf6Ni7vk
 Content-Type: application/json
 
 {
-  "name": "Lenovo"
+  "name": "Maxsus trans"
 }
 
 

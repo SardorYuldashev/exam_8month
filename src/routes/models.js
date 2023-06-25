@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const genValidator = require('../shared/validator');
+const { genValidator } = require('../shared/validator');
 const { isLoggedIn } = require('../shared/auth');
 const schemas = require('../conterollers/models/schemas');
 const { addModel, getModels, showModel, editModel, deleteModel } = require('../conterollers/models');

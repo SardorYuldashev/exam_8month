@@ -1,9 +1,12 @@
 const router = require('express').Router();
 const upload = require('../shared/fileUpload');
-const genValidator = require('../shared/validator');
+const uploadValidator = require('../shared/validator/uploadValidator');
+const schemas = require('../conterollers/noutbooks/schemas');
 const { isLoggedIn } = require('../shared/auth');
+const { addNoutbook } = require('../conterollers/noutbooks');
 
-router.post('/noutbooks', upload.single('files'), (req, res) => {
-});
+const mAddNoutbook = [isLoggedIn, upload.single('photos'), uploadValidator(schemas.addNoutbookSchema)];
+
+router.post('/noutbooks', mAddNoutbook, addNoutbook);
 
 module.exports = router;
