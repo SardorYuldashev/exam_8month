@@ -3,7 +3,7 @@ Content-Type: application/json
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjg3NjgyNzQzLCJleHAiOjE2ODc4NTU1NDN9.S7qMn3pJWwp8qjMg68CM_lfkWQ964NQdeFpvf6Ni7vk
 
 {
-  "name": "O'yinchoqlar"
+  "name": "Kalkulyator"
 }
 
 
@@ -16,7 +16,7 @@ GET http://localhost:3000/categories
 
 
 ###
-GET http://localhost:3000/categories/6
+GET http://localhost:3000/categories/2
 
 
 
