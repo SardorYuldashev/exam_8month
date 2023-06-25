@@ -35,11 +35,13 @@ const addNoutbook = async (req, res, next) => {
  */
 const getNoutbooks = async (req, res, next) => {
   try {
-    const { q, offset = 0, limit = 10, sort_by = 'id', sort_order = 'desc' } = req.query;
+    const { q, offset = 0, limit = 5, sort_by = 'id', sort_order = 'desc' } = req.query;
 
     const dbQuery = db('noutbooks')
       .leftJoin('brands', 'brands.id', 'noutbooks.brand_id')
       .leftJoin('models', 'models.id', 'noutbooks.model_id')
+      .leftJoin('noutbooks_categories', 'noutbooks_categories.noutbook_id', 'noutbooks.id')
+      .leftJoin('categories', 'noutbooks_categories.category_id', 'categories.id')
       .select(
         'noutbooks.id',
         'noutbooks.name',
@@ -59,6 +61,15 @@ const getNoutbooks = async (req, res, next) => {
             'id', models.id,
             'name', models.name
           ) END as model
+        `),
+        db.raw(`
+        COALESCE(
+          json_agg(
+            json_build_object(
+            'id', categories.id,
+            'name', categories.name
+          ) 
+        ) filter (where noutbooks_categories.category_id IS NOT NULL), '[]') as categories
         `)
       )
       .groupBy('noutbooks.id', 'brands.id', 'models.id');
@@ -101,6 +112,8 @@ const showNoutbook = async (req, res, next) => {
     const noutbook = await db('noutbooks')
       .leftJoin('brands', 'brands.id', 'noutbooks.brand_id')
       .leftJoin('models', 'models.id', 'noutbooks.model_id')
+      .leftJoin('noutbooks_categories', 'noutbooks_categories.noutbook_id', 'noutbooks.id')
+      .leftJoin('categories', 'noutbooks_categories.category_id', 'categories.id')
       .select(
         'noutbooks.id',
         'noutbooks.name',
@@ -120,6 +133,15 @@ const showNoutbook = async (req, res, next) => {
             'id', models.id,
             'name', models.name
           ) END as model
+        `),
+        db.raw(`
+        COALESCE(
+          json_agg(
+            json_build_object(
+            'id', categories.id,
+            'name', categories.name
+          ) 
+        ) filter (where noutbooks_categories.category_id IS NOT NULL), '[]') as categories
         `)
       )
       .where({ 'noutbooks.id': id })
