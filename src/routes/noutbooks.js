@@ -11,6 +11,6 @@ const mEditNoutbook = [isLoggedIn, upload.single('photos'), uploadValidator(sche
 router.post('/noutbooks', mAddNoutbook, addNoutbook);
 router.get('/noutbooks', getNoutbooks);
 router.get('/noutbooks/:id', showNoutbook);
-router.patch('/noutbooks/:id', editNoutbook);
+router.patch('/noutbooks/:id', mEditNoutbook, editNoutbook);
 
 module.exports = router;

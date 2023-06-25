@@ -1,6 +1,7 @@
 const express = require('express');
 const db = require('../../db');
 const { NotFoundError } = require('../../shared/errors');
+const removeFile = require('../../shared/removeFile')
 
 /**
  * Noutbook qo'shish
@@ -145,7 +146,29 @@ const showNoutbook = async (req, res, next) => {
  */
 const editNoutbook = async (req, res, next) => {
   try {
+    const { id } = req.params;
 
+    const { ...values } = req.body;
+
+    const existing = await db('noutbooks').where({ id }).first();
+
+    if (!existing) {
+      throw new NotFoundError(`IDsi ${id} bo'lgan noutbook topilmadi`);
+    };
+
+    if (req.file) {
+      removeFile(existing.image);
+      values.image = req.file.filename;
+    };
+
+    const updated = await db('noutbooks')
+      .where({ id })
+      .update({ ...values })
+      .returning('*');
+
+    res.status(200).json({
+      updated: updated[0]
+    });
   } catch (error) {
     next(error);
   };
