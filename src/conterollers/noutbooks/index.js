@@ -1,5 +1,6 @@
 const express = require('express');
 const db = require('../../db');
+const { NotFoundError } = require('../../shared/errors');
 
 /**
  * Noutbook qo'shish
@@ -86,7 +87,57 @@ const getNoutbooks = async (req, res, next) => {
   };
 };
 
+/**
+ * Bitta noutbookni olish
+ * @param {express.Request} req 
+ * @param {express.Response} res 
+ * @param {express.NextFunction} next 
+ */
+const showNoutbook = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+
+    const noutbook = await db('noutbooks')
+      .leftJoin('brands', 'brands.id', 'noutbooks.brand_id')
+      .leftJoin('models', 'models.id', 'noutbooks.model_id')
+      .select(
+        'noutbooks.id',
+        'noutbooks.name',
+        'noutbooks.price',
+        'noutbooks.description',
+        'noutbooks.image',
+        db.raw(`
+          CASE WHEN noutbooks.brand_id IS NULL THEN NULL
+          ELSE json_build_object(
+            'id', brands.id,
+            'name', brands.name
+          ) END as brand
+        `),
+        db.raw(`
+          CASE WHEN noutbooks.model_id IS NULL THEN NULL
+          ELSE json_build_object(
+            'id', models.id,
+            'name', models.name
+          ) END as model
+        `)
+      )
+      .where({ 'noutbooks.id': id })
+      .groupBy('noutbooks.id', 'brands.id', 'models.id')
+      .first();
+
+    if (!noutbook) {
+      throw new NotFoundError(`IDsi ${id} bo'lgan noutbooks topilmadi`);
+    };
+
+    res.status(200).json({
+      noutbook
+    });
+  } catch (error) {
+    next(error);
+  };
+};
 module.exports = {
   addNoutbook,
-  getNoutbooks
+  getNoutbooks,
+  showNoutbook
 };
