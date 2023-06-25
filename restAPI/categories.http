@@ -1,9 +1,9 @@
 POST http://localhost:3000/categories
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjg3NjgyNzQzLCJleHAiOjE2ODc4NTU1NDN9.S7qMn3pJWwp8qjMg68CM_lfkWQ964NQdeFpvf6Ni7vk
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjg3NzEwMzczLCJleHAiOjE2ODc4ODMxNzN9.DDjJpab0AsjM2BvWJlXcZpB7_PSscHQ6H8slmPqmQeM
 
 {
-  "name": "Kalkulyator"
+  "name": "Fleshbuk"
 }
 
 
@@ -16,17 +16,17 @@ GET http://localhost:3000/categories
 
 
 ###
-GET http://localhost:3000/categories/2
+GET http://localhost:3000/categories/8
 
 
 
 ###
-PATCH http://localhost:3000/categories/7
+PATCH http://localhost:3000/categories/6
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjg3NjA3MTYxLCJleHAiOjE2ODc3Nzk5NjF9.2_B2MCkglZXzBwn06f8xLC_K4kNc8uR27k1ut-I1Gww
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjg3NzEwMzczLCJleHAiOjE2ODc4ODMxNzN9.DDjJpab0AsjM2BvWJlXcZpB7_PSscHQ6H8slmPqmQeM
 
 {
-  "name": "O'yin uchun noutbuklar"
+  "name": "Stol kompyuterlari"
 }
 
 

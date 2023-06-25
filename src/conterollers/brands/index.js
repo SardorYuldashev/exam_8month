@@ -85,7 +85,7 @@ const showBrand = async (req, res, next) => {
     const { id } = req.params;
 
     const brand = await db('brands')
-      .innerJoin('models', 'models.brand_id', 'brands.id')
+      .leftJoin('models', 'models.brand_id', 'brands.id')
       .select(
         'brands.id',
         'brands.name',

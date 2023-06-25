@@ -1,10 +1,10 @@
 POST http://localhost:3000/models
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjg3NjgyNzQzLCJleHAiOjE2ODc4NTU1NDN9.S7qMn3pJWwp8qjMg68CM_lfkWQ964NQdeFpvf6Ni7vk
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjg3NzEwMzczLCJleHAiOjE2ODc4ODMxNzN9.DDjJpab0AsjM2BvWJlXcZpB7_PSscHQ6H8slmPqmQeM
 Content-Type: application/json
 
 {
-  "name": "Akfa",
-  "brand_id": 2
+  "name": "Priton",
+  "brand_id": 9
 }
 
 
@@ -14,20 +14,20 @@ GET http://localhost:3000/models
 
 
 ###
-GET http://localhost:3000/models/2
+GET http://localhost:3000/models/12
 
 
 ###
-PATCH http://localhost:3000/models/17
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjg3NjgyNzQzLCJleHAiOjE2ODc4NTU1NDN9.S7qMn3pJWwp8qjMg68CM_lfkWQ964NQdeFpvf6Ni7vk
+PATCH http://localhost:3000/models/12
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjg3NzEwMzczLCJleHAiOjE2ODc4ODMxNzN9.DDjJpab0AsjM2BvWJlXcZpB7_PSscHQ6H8slmPqmQeM
 Content-Type: application/json
 
 {
-  "name": "Pichoq",
+  "name": "Triton",
   "brand_id": 3
 }
 
 
 ###
-DELETE http://localhost:3000/models/17
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjg3NjgyNzQzLCJleHAiOjE2ODc4NTU1NDN9.S7qMn3pJWwp8qjMg68CM_lfkWQ964NQdeFpvf6Ni7vk
+DELETE http://localhost:3000/models/12
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjg3NzEwMzczLCJleHAiOjE2ODc4ODMxNzN9.DDjJpab0AsjM2BvWJlXcZpB7_PSscHQ6H8slmPqmQeM
