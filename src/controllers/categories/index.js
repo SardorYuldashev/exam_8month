@@ -1,7 +1,6 @@
 const express = require('express');
 const db = require('../../db');
-const { BadReqqustError, NotFoundError } = require('../../shared/errors');
-const { when } = require('joi');
+const { NotFoundError } = require('../../shared/errors');
 
 /**
  * Kategoriya yaratish

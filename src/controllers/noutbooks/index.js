@@ -1,7 +1,7 @@
 const express = require('express');
 const db = require('../../db');
 const { NotFoundError, BadReqqustError } = require('../../shared/errors');
-const removeFile = require('../../shared/removeFile')
+const removeFile = require('../../shared/removeFile');
 
 /**
  * Noutbook qo'shish

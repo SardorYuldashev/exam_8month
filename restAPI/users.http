@@ -1,0 +1,28 @@
+### Login qilish
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+  "username": "",
+  "password": ""
+}
+
+### Userlar listini olish
+GET http://localhost:3000/users
+Authorization: 
+
+### Bitta user ma'lumotini olish
+GET http://localhost:3000/users/:id
+Authorization: 
+
+### Shaxsiy ma'lumotlarni tahrirlash
+PATCH http://localhost:3000/users/:id
+Authorization: 
+Content-Type: application/json
+
+{
+  "first_name": "",
+  "last_name": "",
+  "username": "",
+  "password": "",
+}

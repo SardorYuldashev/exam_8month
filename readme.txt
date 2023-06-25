@@ -7,4 +7,3 @@ users:
   username: 'orzu',
   password: 12345678
 };
-

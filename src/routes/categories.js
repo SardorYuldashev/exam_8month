@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { isLoggedIn } = require('../shared/auth');
-const { addCategory, getCategories, showCategory, editCategory, deleteCategory } = require('../conterollers/categories');
-const schemas = require('../conterollers/categories/schemas');
+const { addCategory, getCategories, showCategory, editCategory, deleteCategory } = require('../controllers/categories');
+const schemas = require('../controllers/categories/schemas');
 const { genValidator } = require('../shared/validator');
 
 const mPostCategory = [isLoggedIn, genValidator(schemas.addCategorySchema)];

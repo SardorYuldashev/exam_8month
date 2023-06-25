@@ -33,7 +33,7 @@ const loginUser = async (req, res, next) => {
         role: existing.role
       },
       config.jwt.secret,
-      { expiresIn: '2d', }
+      { expiresIn: '12h', }
     );
 
     res.status(200).json({ token });

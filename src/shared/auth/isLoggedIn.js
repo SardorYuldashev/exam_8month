@@ -1,7 +1,7 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
 const config = require('../config');
-const { UnauthorizedError, BadReqqustError } = require('../errors');
+const { UnauthorizedError } = require('../errors');
 
 /**
  * Login bo'lganini tekshirish
@@ -24,7 +24,7 @@ const isLoggedIn = (req, res, next) => {
 
     next();
   } catch (error) {
-    err = new BadReqqustError('Login qilmagansiz');
+    err = new UnauthorizedError('Login qilmagansiz');
     next(err);
   };
 };

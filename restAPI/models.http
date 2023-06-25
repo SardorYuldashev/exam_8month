@@ -1,33 +1,29 @@
+### Model qo'shish
 POST http://localhost:3000/models
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjg3NzEwMzczLCJleHAiOjE2ODc4ODMxNzN9.DDjJpab0AsjM2BvWJlXcZpB7_PSscHQ6H8slmPqmQeM
+Authorization: 
 Content-Type: application/json
 
 {
-  "name": "Priton",
-  "brand_id": 9
+  "name": "",
+  "brand_id": 
 }
 
-
-###
+### Modellar listini olish
 GET http://localhost:3000/models
 
+### Bitta modelni olish
+GET http://localhost:3000/models/:id
 
-
-###
-GET http://localhost:3000/models/12
-
-
-###
-PATCH http://localhost:3000/models/12
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjg3NzEwMzczLCJleHAiOjE2ODc4ODMxNzN9.DDjJpab0AsjM2BvWJlXcZpB7_PSscHQ6H8slmPqmQeM
+### Modelni tahrirlash
+PATCH http://localhost:3000/models/:id
+Authorization: 
 Content-Type: application/json
 
 {
-  "name": "Triton",
-  "brand_id": 3
+  "name": "",
+  "brand_id": 
 }
 
-
-###
-DELETE http://localhost:3000/models/12
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjg3NzEwMzczLCJleHAiOjE2ODc4ODMxNzN9.DDjJpab0AsjM2BvWJlXcZpB7_PSscHQ6H8slmPqmQeM
+### Modelni o'chirish
+DELETE http://localhost:3000/models/:id
+Authorization: 

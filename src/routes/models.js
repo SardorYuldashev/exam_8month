@@ -1,8 +1,8 @@
 const router = require('express').Router();
 const { genValidator } = require('../shared/validator');
 const { isLoggedIn } = require('../shared/auth');
-const schemas = require('../conterollers/models/schemas');
-const { addModel, getModels, showModel, editModel, deleteModel } = require('../conterollers/models');
+const schemas = require('../controllers/models/schemas');
+const { addModel, getModels, showModel, editModel, deleteModel } = require('../controllers/models');
 
 const mAddModel = [isLoggedIn, genValidator(schemas.addModelSchema)];
 const mEditModel = [isLoggedIn, genValidator(schemas.editModelSchema)];

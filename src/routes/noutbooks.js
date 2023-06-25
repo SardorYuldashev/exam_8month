@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const upload = require('../shared/fileUpload');
 const uploadValidator = require('../shared/validator/uploadValidator');
-const schemas = require('../conterollers/noutbooks/schemas');
+const schemas = require('../controllers/noutbooks/schemas');
 const { isLoggedIn } = require('../shared/auth');
 const {
   addNoutbook,
@@ -11,7 +11,7 @@ const {
   deleteNoutbook,
   addNoutbookToCategory,
   removeNoutbookFromCategory
-} = require('../conterollers/noutbooks');
+} = require('../controllers/noutbooks');
 
 const mAddNoutbook = [isLoggedIn, upload.single('photos'), uploadValidator(schemas.addNoutbookSchema)];
 const mEditNoutbook = [isLoggedIn, upload.single('photos'), uploadValidator(schemas.editNoutbookSchema)];
