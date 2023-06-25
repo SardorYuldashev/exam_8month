@@ -13,8 +13,7 @@ GET http://localhost:3000/brands
 
 
 ###
-GET http://localhost:3000/brands/7
-
+GET http://localhost:3000/brands/6
 
 
 ###

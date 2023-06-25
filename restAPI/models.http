@@ -14,7 +14,7 @@ GET http://localhost:3000/models
 
 
 ###
-GET http://localhost:3000/models/1
+GET http://localhost:3000/models/2
 
 
 ###

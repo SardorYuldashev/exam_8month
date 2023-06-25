@@ -32,13 +32,28 @@ const getBrands = async (req, res, next) => {
   try {
     const { q, offset = 0, limit = 5, sort_by = 'id', sort_order = 'desc' } = req.query;
 
-    const dbQuery = db('brands').select('*');
+    const dbQuery = db('brands')
+      .leftJoin('models', 'models.brand_id', 'brands.id')
+      .select(
+        'brands.id',
+        'brands.name',
+        db.raw(`
+        COALESCE(
+          json_agg(
+            json_build_object(
+            'id', models.id,
+            'name', models.name
+          ) 
+        ) filter (where models.brand_id IS NOT NULL), '[]') as models
+        `)
+      )
+      .groupBy('brands.id');
 
     if (q) {
-      dbQuery.andWhereILike('name', `%${q}%`);
+      dbQuery.andWhereILike('brands.name', `%${q}%`);
     };
 
-    const total = await dbQuery.clone().count().groupBy('id');
+    const total = await dbQuery.clone().count().groupBy('brands.id');
 
     dbQuery.orderBy(sort_by, sort_order);
 
@@ -69,7 +84,24 @@ const showBrand = async (req, res, next) => {
   try {
     const { id } = req.params;
 
-    const brand = await db('brands').select('*').where({ id }).first();
+    const brand = await db('brands')
+      .innerJoin('models', 'models.brand_id', 'brands.id')
+      .select(
+        'brands.id',
+        'brands.name',
+        db.raw(`
+        COALESCE(
+          json_agg(
+            json_build_object(
+            'id', models.id,
+            'name', models.name
+          ) 
+        ) filter (where models.brand_id IS NOT NULL), '[]') as models
+        `)
+      )
+      .where({ 'brands.id': id })
+      .groupBy('brands.id') 
+      .first();
 
     if (!brand) {
       throw new NotFoundError(`IDsi ${id} bo'lgan brand topilmadi`);
@@ -124,14 +156,14 @@ const deleteBrand = async (req, res, next) => {
   try {
     const { id } = req.params;
 
-    const existing = await db('brands').where({id}).first();
+    const existing = await db('brands').where({ id }).first();
 
-    if(!existing) {
+    if (!existing) {
       throw new NotFoundError(`IDsi ${id} bo'lgan brand topilmadi`);
     };
 
     const deleted = await db('brands')
-      .where({id})
+      .where({ id })
       .delete()
       .returning('*');
 
