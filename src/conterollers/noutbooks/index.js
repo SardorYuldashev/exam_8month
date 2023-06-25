@@ -136,8 +136,25 @@ const showNoutbook = async (req, res, next) => {
     next(error);
   };
 };
+
+/**
+ * Noutbookni tahrirlash
+ * @param {express.Request} req 
+ * @param {express.Response} res 
+ * @param {express.NextFunction} next 
+ */
+const editNoutbook = async (req, res, next) => {
+  try {
+
+  } catch (error) {
+    next(error);
+  };
+};
+
+
 module.exports = {
   addNoutbook,
   getNoutbooks,
-  showNoutbook
+  showNoutbook,
+  editNoutbook
 };
