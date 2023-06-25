@@ -1,4 +1,4 @@
-GET http://localhost:3000/noutbooks?limit=2
+GET http://localhost:3000/noutbooks?sort_by=price&sort_order=asc
 
 
 
