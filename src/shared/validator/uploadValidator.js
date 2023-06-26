@@ -16,7 +16,6 @@ module.exports = function uploadValidator(schema) {
         removeFile(req.file.filename);
       };
 
-
       err = new BadReqqustError(error.details[0].message);
       next(err);
     };
