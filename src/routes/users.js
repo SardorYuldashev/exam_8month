@@ -9,7 +9,7 @@ const mGetUsers = [isLoggedIn];
 const mShowUser = [isLoggedIn];
 const mEditUsers = [isLoggedIn, thisYourAccount, genValidator(schemas.editUserSchema)];
 
-router.post('/users', mLoginUser, loginUser);
+router.post('/users/login', mLoginUser, loginUser);
 router.get('/users', mGetUsers, getUsers);
 router.get('/users/:id', mShowUser, showUser);
 router.patch('/users/:id', mEditUsers, editUser);

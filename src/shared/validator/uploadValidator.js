@@ -1,6 +1,6 @@
 const Joi = require('joi');
 const { BadReqqustError } = require('../errors');
-const  removeFile = require('../removeFile');
+const removeFile = require('../removeFile');
 
 /**
  * @param {Joi.Schema} schema 
@@ -12,7 +12,11 @@ module.exports = function uploadValidator(schema) {
 
       next();
     } catch (error) {
-      removeFile(req.file.filename);
+      if (req.file) {
+        removeFile(req.file.filename);
+      };
+
+
       err = new BadReqqustError(error.details[0].message);
       next(err);
     };
